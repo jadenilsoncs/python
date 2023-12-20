@@ -19,7 +19,7 @@ data = json.load(file)
 # df é referência a DataFrame
 df = pd.DataFrame.from_dict(data)
 
-#imprime os dados carregados para ter certeza de que os estou acessando em formato tabular.
+#imprime os dados carregados para ter certeza de que os estou acessando. E imprime em formato tabular.
 print(df)
 
 #Fecha o arquivo, o acesso ao arquivo carregado.
