@@ -13,3 +13,23 @@ st.set_page_config(layout="wide")
 
 #Cria um dashboard com o título.
 st.title("Dashboard da Posição Diária :shopping_trolley:")
+
+#criar 4 habas. Chamo o streamlit tabs e passo uma lista, em formato de lista.
+aba1, aba2, aba3, aba4 = st.tabs(["Datas","Coop. Ativos","Emprestimo","Depositos(Total)"])
+
+#Aqui mostra todas as 4 colunas do arquivo ("Datas","Coop. Ativos","Emprestimo","Depositos(Total)") em uma só aba.
+with aba1:
+    st.dataframe(df)
+
+#Aqui já mostra uma coluna da planilha por aba (aba1: "Datas", aba2: "Coop. Ativos", aba3: "Emprestimo", aba4: "Depositos(Total)").
+#with aba1:
+    #st.dataframe(df["Datas"])
+
+#with aba2:
+    #st.dataframe(df["Coop. Ativos"])
+
+#with aba3:
+    #st.dataframe(df["Emprestimo"])
+
+#with aba4:
+    #st.dataframe(df["Depositos (Total)"])
