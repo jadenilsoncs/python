@@ -4,7 +4,8 @@ import plotly.express as px
 from dataset import df
 #Possibilita adicionar um ícone personalizado no título do dashboard.
 import requests
-import locale
+#importa do arquivo utils a função format_number
+from utils import format_number
 
 #Caminho da imagem personalizada
 icon_url = "/home/jadenilsonsilva/Documents/python/pictures/Background_PGN.png"
@@ -41,12 +42,12 @@ with aba6:
 
     #Cálculo da quantidade registros existentes.
     with coluna1:
-        total_registros = st.metric("Quantidade de dias contabilizados", df.shape[0])
+        total_registros = st.metric("Quantidade de dias contabilizados", df.shape[0], "dias")
 
     #Cálculo da média de cooperados ativos em um período de 19 dias, ou seja, a soma total dividida por 19.
     with coluna2:
-        metrica = st.metric("Media de Coop. Ativos", (df["Coop. Ativos"].sum())/df.shape[0])
+        st.metric("Media de Coop. Ativos", format_number( ( df["Coop. Ativos"].sum() ) / df.shape[0] ), "R$" )
 
     #Cálculo da média de empréstimos concedidos em um período de 19 dias, ou seja, a soma total dividida por 19.
     with coluna3:
-        st.metric("Media de Emprestimo", (df["Emprestimo"].sum())/df.shape[0])
+        st.metric("Media de Emprestimo", format_number( ( df["Emprestimo"].sum() ) / df.shape[0] ), "R$" )
