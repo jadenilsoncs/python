@@ -14,5 +14,4 @@ def format_number(value, prefix = ""):
         #Retorna uma f string. value formatado em 2 casas decimais.
         return f"{prefix} {value:.2f} milhões"
     
-##################################################################################    
-        
+##################################################################################

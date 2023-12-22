@@ -19,8 +19,7 @@ data = json.load(file)
 df = pd.DataFrame.from_dict(data)
 
 #imprime os dados carregados para ter certeza de que os estou acessando. E imprime agora já em formato tabular.
-#Formatando a data da compra no formato dia/mês/ano.
-
+#Formatando a data no formato dia/mês/ano.
 df["Datas"] = pd.to_datetime(df["Datas"], format="%d/%m/%Y")
 
 #Fecha o arquivo, o acesso ao arquivo carregado.

@@ -1,4 +1,6 @@
+#FrameWork
 import streamlit as st
+#Biblioteca de plotagem
 import plotly.express as px
 #importar df do dataset.py, que é esse df o meu DataFrame já com a formatação da data, campos, coluna chamada "Datas" já formatada.
 from dataset import df
