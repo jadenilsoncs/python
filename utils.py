@@ -7,9 +7,11 @@ def format_number(value, prefix = ""):
             return f"{prefix} {value:.2f} {unit}"
         
         elif value < 1000000:
+            #Retorna uma f string. value formatado em 2 casas decimais.
             return f"{prefix} {value:.2f} {unit} mil"
         
         value /= 1000
+        #Retorna uma f string. value formatado em 2 casas decimais.
         return f"{prefix} {value:.2f} milhões"
     
 ##################################################################################    
