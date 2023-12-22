@@ -15,7 +15,7 @@ st.set_page_config(layout="wide")
 st.title("Dashboard da Posição Diária :shopping_trolley:")
 
 #criar 4 habas. Chamo o streamlit tabs e passo uma lista, em formato de lista.
-aba1, aba2, aba3, aba4, aba5 = st.tabs(["Geral","Datas","Coop. Ativos","Emprestimo","Depositos(Total)"])
+aba1, aba2, aba3, aba4, aba5, aba6 = st.tabs(["Geral","Datas","Coop. Ativos","Emprestimo","Depositos(Total)","Média Cooperados(período de amostragem de 19 dias)"])
 
 #Aqui já mostra uma coluna da planilha por aba (aba1: "Geral(essa motra tudo)", aba2: "Datas", aba3: "Coop. Ativos", aba4: "Emprestimo", aba5: "Depositos(Total)").
 with aba1:
@@ -32,3 +32,6 @@ with aba4:
 
 with aba5:
     st.dataframe(df["Depositos (Total)"])
+
+#with aba6:
+    #st.dataframe(df["Média Cooperados(19 dias)"])
