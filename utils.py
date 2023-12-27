@@ -18,15 +18,12 @@ def format_number(value, prefix = ""):
         return f"{prefix} {value:.2f} milhões"
 #####################################################################################################################
 tipo_de_dado1 = df['Datas'].dtype
-
 print(tipo_de_dado1)
 
 tipo_de_dado2 = df['Coop. Ativos'].dtype
-
 print(tipo_de_dado2)
 
 tipo_de_dado3 = df['Emprestimo'].dtype
-
 print(tipo_de_dado3)
 
 df['Datas'] = df['Datas'].astype('int64') # Convertendo coluna datas para inteiro.
