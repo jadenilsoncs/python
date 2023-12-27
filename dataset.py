@@ -3,16 +3,16 @@ from time import sleep
 import pandas as pd
 
 # Importar os dados da planilha Excel
-#df = pd.read_excel("/home/jadenilsonsilva/Documents/python/UAD_Posicao_Diaria.xlsx")
-df = pd.read_excel("/home/jadenilsoncs/python/UAD_Posicao_Diaria.xlsx")
+df = pd.read_excel("/home/jadenilsonsilva/Documents/python/UAD_Posicao_Diaria.xlsx")
+#df = pd.read_excel("/home/jadenilsoncs/python/UAD_Posicao_Diaria.xlsx")
 
 # Salvar os dados em formato JSON(transformar em json)
-#df.to_json("/home/jadenilsonsilva/Documents/python/UAD_Posicao_Diaria.json")
-df.to_json("/home/jadenilsoncs/python/UAD_Posicao_Diaria.json")
+df.to_json("/home/jadenilsonsilva/Documents/python/UAD_Posicao_Diaria.json")
+#df.to_json("/home/jadenilsoncs/python/UAD_Posicao_Diaria.json")
 
 #Caminho onde estão os dados, agora em formato json. Pode ser um banco de dados também. Estou abrindo o arquivo.
-#file = open("/home/jadenilsonsilva/Documents/python/UAD_Posicao_Diaria.json")
-file = open("/home/jadenilsoncs/python/UAD_Posicao_Diaria.json")
+file = open("/home/jadenilsonsilva/Documents/python/UAD_Posicao_Diaria.json")
+#file = open("/home/jadenilsoncs/python/UAD_Posicao_Diaria.json")
 
 #Carregamento do arquivo json
 data = json.load(file)
