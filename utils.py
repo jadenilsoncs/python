@@ -28,9 +28,9 @@ df_tabela_soma_cooperados = df.drop_duplicates(subset="Datas")[["Datas","Coop. A
 
 
 #Agrupando pela data.
-df_tabela_soma_emprestimos = df.groupby("Datas")
+df_tabela_soma_emprestimos = df.groupby("Datas")[["Emprestimo"]].sum()
 df_tabela_soma_emprestimos = df.drop_duplicates(subset="Datas")[["Datas","Emprestimo"]].merge(df_tabela_soma_emprestimos, left_on="Datas", right_index=True).sort_values("Datas", ascending=True)
 
-print(df_tabela_soma_cooperados)
+print(f"",df_tabela_soma_cooperados,"\n")
 
 print(df_tabela_soma_emprestimos)
