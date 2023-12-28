@@ -10,7 +10,8 @@ import requests
 #importa do arquivo utils a função format_number
 from utils import format_number
 #Importar os gráficos do arquivo graficos.py
-from graficos import grafico_map_soma_cooperados, grafico_map_soma_emprestimos
+from graficos import grafico_map_soma_cooperados
+from graficos import grafico_map_soma_emprestimos
 
 #Caminho da imagem personalizada
 icon_url = "/home/jadenilsonsilva/Documents/python/pictures/Background_PGN.png"
