@@ -23,7 +23,7 @@ def format_number(value, prefix = ""):
         return f"{prefix} {value:.2f} milhões"
 #####################################################################################################################
 #Agrupando pela data.
-df_tabela_soma_cooperados = df.groupby("Datas")[["Coop. Ativos"]].sum().sort_values('Datas', ascending=True)
+df_tabela_soma_cooperados = df.groupby("Datas")[["Coop. Ativos"]].sum().sort_values('Datas', ascending=True).round(5)
 #df_tabela_soma_cooperados = df.drop_duplicates(subset="Datas")[["Datas","Coop. Ativos"]].merge(df_tabela_soma_cooperados,\
     #left_on="Datas", right_index=True).sort_values("Datas", ascending=True)
 
