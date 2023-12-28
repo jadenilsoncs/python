@@ -7,7 +7,7 @@ from utils import df_tabela_soma_emprestimos
 #Gráfico da soma dos cooperados
 grafico_map_soma_cooperados = px.scatter_geo(
     df_tabela_soma_cooperados,
-    datas = "Datas",
+    custom_data = df_tabela_soma_cooperados,
     coop_ativos = "Coop. Ativos",
     scope = "south america",
     size = "Coop. Ativos",
@@ -21,7 +21,7 @@ grafico_map_soma_cooperados = px.scatter_geo(
 #Gráfico da soma dos empréstimos
 grafico_map_soma_emprestimos = px.scatter_geo(
     df_tabela_soma_emprestimos,
-    datas = "Datas",
+    custom_data = df_tabela_soma_emprestimos,
     coop_ativos = "Emprestimo",
     scope = "south america",
     size = "Emprestimo",
