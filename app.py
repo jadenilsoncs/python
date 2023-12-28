@@ -9,6 +9,9 @@ from dataset import df
 import requests
 #importa do arquivo utils a função format_number
 from utils import format_number
+#Importar os gráficos do arquivo graficos.py
+from graficos import grafico_map_soma_cooperados
+from graficos import grafico_map_soma_emprestimos
 
 #Caminho da imagem personalizada
 icon_url = "/home/jadenilsonsilva/Documents/python/pictures/Background_PGN.png"
@@ -21,9 +24,9 @@ st.set_page_config(layout="wide")
 st.title("Dashboard da Posição Diária :shopping_trolley:")
 
 #criar 4 habas. Chamo o streamlit tabs e passo uma lista, em formato de lista.
-aba1, aba2, aba3, aba4, aba5, aba6, aba7 = st.tabs(["1-Geral","2-Datas","3-Coop. Ativos","4-Emprestimo",
+aba1, aba2, aba3, aba4, aba5, aba6, aba7 = st.tabs(["1-Geral","2-Datas","3-Coop. Ativos","4-Emprestimo",\
     "5-Depositos(Total)","6-Média Cooperados e Media de Emprestimos", 
-        "7-Tabela do Somatório dos Cooperados por Data e Tabela do Somatório dos Emprestimos por Data"])
+        "7-Tabela Total Cooperados por Data e Tabela Total Emprestimos por Data"])
 
 #Aqui já mostra uma coluna da planilha por aba (aba1: "Geral(essa motra tudo)", aba2: "Datas", 
     #aba3: "Coop. Ativos", aba4: "Emprestimo", aba5: "Depositos(Total)", 
@@ -77,12 +80,10 @@ with aba7:
 
     #"Tabela do Somatório dos Cooperados por Data. Chamando do arquivo utils.py(onde se encontra a fórmula)
     with coluna2:
-        print("teste coluna 2")
-        #df_tabela_media_cooperados = df.groupby("Datas")[["Coop. Ativos"]].sum()
-        #st.metric("Somatório ds Coop. Ativos", df_tabela_media_cooperados)
+        #Plotando, chamando, montando, o gráfico
+        st.plotly_chart(grafico_map_soma_cooperados, use_container_width = True)
 
     #"Tabela do Somatório dos Emprestimos por Data. Chamando do arquivo utils.py(onde se encontra a fórmula)
     with coluna3:
-        print("teste coluna 3")
-        #df_tabela_media_emprestimos = df.groupby("Datas")[["Emprestimos"]].sum()
-        #st.metric("Somatório dos Emprestimos", df_tabela_media_emprestimos)
+        #Plotando, chamando, montando, o gráfico
+        st.plotly_chart(grafico_map_soma_emprestimos, use_container_width = True)
