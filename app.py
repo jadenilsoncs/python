@@ -80,10 +80,14 @@ with aba7:
 
     #"Tabela do Somatório dos Cooperados por Data. Chamando do arquivo utils.py(onde se encontra a fórmula)
     with coluna2:
+        #Formatação em reais.
+        st.metric("Coop. Ativos", format_number(df["Coop. Ativos"].sum(), "R$"))
         #Plotando, chamando, montando, o gráfico
         st.plotly_chart(grafico_map_soma_cooperados, use_container_width = True)
 
     #"Tabela do Somatório dos Emprestimos por Data. Chamando do arquivo utils.py(onde se encontra a fórmula)
     with coluna3:
+        #Formatação em reais.
+        st.metric("Emprestimo", format_number(df["Emprestimo"].sum(), "R$"))
         #Plotando, chamando, montando, o gráfico
         st.plotly_chart(grafico_map_soma_emprestimos, use_container_width = True)
