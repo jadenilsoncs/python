@@ -1,38 +1,60 @@
-#Importando os dados do meu dataframe.
-import datetime
-import decimal
-from heapq import nsmallest as ns
-import numpy as np
-from pandas import Series
 from dataset import df
+import pandas as pd
+import streamlit as st
+import time
 
-#Função para formatar números
-def format_number(value, prefix = ""):
-    #Vai varrer os dados de vazio até mil e verificar o value
-    for unit in ["", "1000"]:
+def format_number(value, prefix = ''):
+    for unit in ['', 'mil']:
         if value < 1000:
-            #Retorna uma f string. value formatado em 2 casas decimais.
-            return f"{prefix} {value:.2f} {unit}"
-        
-        elif value < 1000000:
-            #Retorna uma f string. value formatado em 2 casas decimais.
-            return f"{prefix} {value:.2f} {unit} mil"
-        
+            return f'{prefix} {value:.2f} {unit}'
         value /= 1000
-        #Retorna uma f string. value formatado em 2 casas decimais.
-        return f"{prefix} {value:.2f} milhões"
-#####################################################################################################################
-#Agrupando pela data.
-df_tabela_soma_cooperados = df.groupby("Datas")[["Coop. Ativos"]].sum().sort_values('Datas', ascending=True).round(5)
-#df_tabela_soma_cooperados = df.drop_duplicates(subset="Datas")[["Datas","Coop. Ativos"]].merge(df_tabela_soma_cooperados,\
-    #left_on="Datas", right_index=True).sort_values("Datas", ascending=True)
+    return f'{prefix} {value:.2f} milhões'
+#######################################################################
+# 1- Dataframe Receita por Estado
+df_rec_estado = df.groupby('Local da compra')[['Preço']].sum()
+df_rec_estado = df.drop_duplicates(subset='Local da compra')\
+    [['Local da compra', 'lat', 'lon']].merge(df_rec_estado, \
+        left_on='Local da compra', right_index=True).sort_values\
+            ('Preço', ascending=False)
 
+#print(df_rec_estado)
+#######################################################################
+# 2 - Dataframe Receita Mensal
+#Alterando o índice da primeira coluna para a coluna  Data da compra.
+#Estou agrupando por mês e pegando o mês e aplicando um somatório.
+df_rec_mensal = df.set_index('Data da Compra').groupby(pd.Grouper\
+    (freq='M'))['Preço'].sum().reset_index()
 
-#Agrupando pela data.
-df_tabela_soma_emprestimos = df.groupby("Datas")[["Emprestimo"]].sum().sort_values('Datas', ascending=True).round(5)
-#df_tabela_soma_emprestimos = df.drop_duplicates(subset="Datas")[["Datas","Emprestimo"]].merge(df_tabela_soma_emprestimos,\
-    #left_on="Datas", right_index=True).sort_values('Datas', ascending=True)
+#Retirando o ano coluna Data da Compra.
+df_rec_mensal['Ano'] = df_rec_mensal['Data da Compra'].dt.year
 
-#print(f"",df_tabela_soma_cooperados,"\n")
-
-#print(f"",df_tabela_soma_emprestimos)
+#Retirando o mês da coluna Data da Compra.
+df_rec_mensal['Mes'] = df_rec_mensal['Data da Compra'].dt.month_name()
+#print(df_rec_mensal)
+#######################################################################
+# 3 - Dataframe Receita por Categoria.
+#Agrupando por Categoria dos Produtos e somando pelo preço.
+df_rec_categoria = df.groupby('Categoria do Produto')[['Preço']].\
+    sum().sort_values('Preço', ascending=False)
+#print(df_rec_categoria.head())
+#######################################################################
+# 4 - Dataframe Vendedores
+#Agrupamento por vendedor, fazendo um somatório por preço e contagem
+    #de vendas por vendedor.
+df_vendedores = pd.DataFrame(df.groupby('Vendedor')['Preço'].\
+    agg(['sum', 'count']))
+#print(df_vendedores)
+#######################################################################
+# Função para converter arquivo csv
+@st.cache_data
+def convert_csv(df):
+    return df.to_csv(index=False).encode('utf-8')
+#######################################################################
+def mensagem_sucesso():
+    success = st.success(
+        'Arquivo baixado com sucesso',
+        icon="✅"
+        )
+    time.sleep(3)
+    success.empty()
+#######################################################################
